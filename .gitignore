@@ -1,0 +1,22 @@
+# Derlenmiş dosyalar
+tarsau
+*.o
+*.exe
+
+# Test dosyalari
+t1.txt
+t2.txt
+t3.txt
+t4.txt
+t5.dat
+*.sau
+d1/
+
+# Sistem dosyalari
+.DS_Store
+*.swp
+*~
+
+# Odev dosyasi (GitHub'a yuklenecek degildir)
+sisProgProje2026*.docx
+read_docx.ps1
