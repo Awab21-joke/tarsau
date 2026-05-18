@@ -26,15 +26,28 @@ Bu projede, `tar`, `rar` veya `zip` gibi çalışan ancak sıkıştırma yapmaya
 
 ---
 
+## 2. Geliştirme Süreci
+
+Proje, git versiyon kontrol sistemi kullanılarak adım adım geliştirilmiştir. Geliştirme süreci aşağıdaki temel aşamalardan oluşmaktadır:
+
+1. **Temel Yapı ve Makefile (12 Mayıs):** Projenin başlangıç dosyaları (`tarsau.c`, `Makefile`, `.gitignore`) oluşturuldu. Argüman okuma ve temel hata kontrolleri eklendi.
+2. **Yardımcı Fonksiyonlar (13 Mayıs):** Dosyaların ASCII olup olmadığını kontrol eden, dosya boyutunu bulan ve dosya izinlerini (`rwxrwxrwx` formatında) okuyup dönüştüren fonksiyonlar implement edildi.
+3. **Arşivleme Modu -b (14 Mayıs):** `.sau` arşiv dosyasının organizasyon bölümünü ve içerik kısmını kurallara uygun (10 bayt boyut bilgisi, `|` ayracı, vb.) şekilde oluşturan fonksiyonlar yazıldı.
+4. **Arşivden Çıkarma Modu -a (15 Mayıs):** Arşiv dosyasını okuyup ayrıştıran, gerekli dizinleri oluşturan ve dosyaları orijinal izinleriyle geri çıkaran kodlar eklendi.
+5. **Test ve Hata Düzeltmeleri (16 Mayıs):** Sınır durumlar (büyük dosyalar, bozuk arşivler, ASCII olmayan dosyalar) test edildi ve bellek sızıntıları kontrol edildi.
+6. **Raporlama (17 Mayıs):** Geliştirme süreci, kullanım detayları ve kod açıklamalarını içeren bu rapor hazırlandı.
+
+---
+
 ## 2. Kullanım
 
-### 2.1 Derleme
+### 5.1 Derleme
 
 ```bash
 make
 ```
 
-### 2.2 Arşivleme (Dosyaları Birleştirme)
+### 5.2 Arşivleme (Dosyaları Birleştirme)
 
 ```bash
 # Varsayılan çıktı (a.sau)
@@ -49,7 +62,7 @@ make
 Dosyalar birlestirildi.
 ```
 
-### 2.3 Arşivden Çıkarma
+### 5.3 Arşivden Çıkarma
 
 ```bash
 # Geçerli dizine çıkar
@@ -70,7 +83,7 @@ hedef_dizin dizininde t1, t2, t3, t4.txt, t5.dat dosyalari acildi.
 
 Arşiv dosyası iki ana bölümden oluşur:
 
-### 3.1 Format Yapısı
+### 5.1 Format Yapısı
 
 ```
 ┌──────────────┬─────────────────────────────────────────┬──────────────────────┐
@@ -79,7 +92,7 @@ Arşiv dosyası iki ana bölümden oluşur:
 └──────────────┴─────────────────────────────────────────┴──────────────────────┘
 ```
 
-### 3.2 Organizasyon (İçerik) Bölümü
+### 5.2 Organizasyon (İçerik) Bölümü
 
 - **İlk 10 bayt:** Organizasyon bölümünün toplam boyutunu ASCII formatında içerir
 - **Kayıtlar:** `|` karakteri ile ayrılır
@@ -90,16 +103,16 @@ Arşiv dosyası iki ana bölümden oluşur:
 0000000062|test1.txt,rw-r--r--,35||test2.txt,rw-r--r--,42||test3.txt,rw-r--r--,28|
 ```
 
-### 3.3 Arşivlenmiş Dosyalar Bölümü
+### 5.3 Arşivlenmiş Dosyalar Bölümü
 
 - Dosya içerikleri ayırıcı kullanılmadan art arda yerleştirilir
 - Her dosyanın boyutu organizasyon bölümünden okunarak dosya sınırları belirlenir
 
 ---
 
-## 4. Kaynak Kod Açıklaması
+## 5. Kaynak Kod Açıklaması
 
-### 4.1 Dosya Yapısı
+### 5.1 Dosya Yapısı
 
 ```
 proje/
@@ -108,7 +121,7 @@ proje/
 └── RAPOR.md       # Bu rapor
 ```
 
-### 4.2 Temel Fonksiyonlar
+### 5.2 Temel Fonksiyonlar
 
 #### `main()` - Giriş Noktası
 Komut satırı argümanlarını ayrıştırır ve ilgili modu (`-b` veya `-a`) çağırır.
@@ -248,7 +261,7 @@ Program aşağıdaki hata durumlarını ele alır:
 
 ## 6. Test Sonuçları
 
-### 6.1 Arşivleme Testi
+### 7.1 Arşivleme Testi
 
 ```bash
 $ echo "Merhaba Dunya!" > t1.txt
@@ -258,7 +271,7 @@ $ ./tarsau -b t1.txt t2.txt t3.txt -o test.sau
 Dosyalar birlestirildi.
 ```
 
-### 6.2 Arşivden Çıkarma Testi
+### 7.2 Arşivden Çıkarma Testi
 
 ```bash
 $ ./tarsau -a test.sau cikarilan
@@ -268,7 +281,7 @@ $ diff t2.txt cikarilan/t2.txt  # Fark yok
 $ diff t3.txt cikarilan/t3.txt  # Fark yok
 ```
 
-### 6.3 Hata Durumu Testleri
+### 7.3 Hata Durumu Testleri
 
 ```bash
 $ ./tarsau -b resim.png -o test.sau
@@ -280,7 +293,7 @@ Arsiv dosyasi uygunsuz veya bozuk!
 
 ---
 
-## 7. Derleme ve Çalıştırma
+## 8. Derleme ve Çalıştırma
 
 ```bash
 # Derleme
@@ -298,7 +311,7 @@ make testclean
 
 ---
 
-## 8. GitHub Deposu
+## 9. GitHub Deposu
 
 Proje geliştirme süreci aşağıdaki GitHub adresi üzerinden yürütülmüştür:
 
@@ -317,3 +330,4 @@ Proje geliştirme süreci aşağıdaki GitHub adresi üzerinden yürütülmüşt
 - ✅ Hata durumlarını uygun mesajlarla ele alır
 - ✅ Makefile ile derlenir
 - ✅ Linux/Unix ortamında komut satırından çalışır
+
