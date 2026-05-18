@@ -318,16 +318,3 @@ Proje geliştirme süreci aşağıdaki GitHub adresi üzerinden yürütülmüşt
 > **GitHub:** [https://github.com/Awab21-joke/tarsau](https://github.com/Awab21-joke/tarsau)
 
 ---
-
-## 9. Sonuç
-
-`tarsau` programı, belirtilen tüm gereksinimleri karşılayan bir arşivleme aracı olarak başarıyla geliştirilmiştir:
-
-- ✅ ASCII metin dosyalarını `.sau` formatında arşivler
-- ✅ Arşiv dosyasından orijinal dosyaları çıkarır
-- ✅ Dosya izinlerini korur
-- ✅ 200 MB ve 32 dosya sınırlamalarını uygular
-- ✅ Hata durumlarını uygun mesajlarla ele alır
-- ✅ Makefile ile derlenir
-- ✅ Linux/Unix ortamında komut satırından çalışır
-
