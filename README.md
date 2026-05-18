@@ -170,15 +170,7 @@ Program aşağıdaki hata durumlarını ele alır:
 
 ---
 
-## 7. Test Sonuçları
-
-Aşağıdaki ekran çıktısında programın başarıyla derlendiği (`make`), hata durumlarının başarıyla yakalandığı ve arşivleme/çıkarma işlemlerinin sorunsuz çalıştığı görülmektedir:
-
-*(PASTE YOUR SCREENSHOT HERE)*
-
----
-
-## 8. Derleme ve Çalıştırma
+## 7. Derleme ve Çalıştırma
 
 ```bash
 make          # Kodu derler
